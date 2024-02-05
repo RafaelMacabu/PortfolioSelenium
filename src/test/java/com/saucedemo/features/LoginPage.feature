@@ -2,6 +2,7 @@
 #encoding: utf-8
 
 @Test
+@TestLogin
 Funcionalidade: Cenarios de teste da página de login
 
   Cenario: Login realizado com sucesso

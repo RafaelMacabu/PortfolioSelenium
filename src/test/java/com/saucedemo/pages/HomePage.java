@@ -43,24 +43,24 @@ public class HomePage extends BasePage {
         return By.xpath("//button[@id = 'remove-" + productTag + "']");
     }
 
-    public String getTitleHomePage() {
-        return titleHomePage.getText();
-    }
-
-    public HomePage clickAddToCartButton(String productTag) {
-        By addToCartButton = getAddToCartBtnElement(productTag);
+    public HomePage clickAddToCartButton(String productName) {
+        By addToCartButton = getAddToCartBtnElement(productNameToTag(productName));
         driver.findElement(addToCartButton).click();
         return this;
     }
 
-    public HomePage clickRemoveFromCartButton(String productTag) {
-        By removeFromCartButton = getRemoveFromCartBtnElement(productTag);
+    public HomePage clickRemoveFromCartButton(String productName) {
+        By removeFromCartButton = getRemoveFromCartBtnElement(productNameToTag(productName));
         driver.findElement(removeFromCartButton).click();
         return this;
     }
 
     public void assertIfTitleIsEqual(String expected) {
         System.out.println(expected);
-        Assert.assertEquals(getTitleHomePage(),expected);
+        Assert.assertEquals(titleHomePage.getText(),expected);
+    }
+
+    public String productNameToTag(String productName){
+        return productName.toLowerCase().replaceAll("[\\s]","-");
     }
 }

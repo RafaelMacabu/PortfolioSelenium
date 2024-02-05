@@ -17,7 +17,7 @@ import org.testng.annotations.Test;
         monochrome = true,
         features = {"src/test/java/com/saucedemo/features"},
         glue = {"com.saucedemo.stepdef"},
-        tags = "@Test"
+        tags = "@TestHome"
 )
 public class TestNGRunner extends BaseTest{
     private TestNGCucumberRunner testNGCucumberRunner;

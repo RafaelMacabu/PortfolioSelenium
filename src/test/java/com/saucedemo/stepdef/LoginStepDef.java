@@ -9,12 +9,12 @@ import io.cucumber.java.pt.Quando;
 
 public class LoginStepDef{
     @Dado("que eu preencho o campo username com {string}")
-    public void queEuPreenchoOCampoUsernameComStandard_user(String username) {
+    public void queEuPreenchoOCampoUsername(String username) {
         LoginPage.action().load().writeUsernameField(username);
     }
 
     @E("que eu preencho o campo password com {string}")
-    public void queEuPreenchoOCampoPasswordComSecret_sauce(String password) {
+    public void queEuPreenchoOCampoPassword(String password) {
         LoginPage.action().writePasswordField(password);
     }
 
@@ -26,5 +26,10 @@ public class LoginStepDef{
     @Entao("estarei na home page")
     public void estareiNaHomePage() {
         HomePage.action().assertIfTitleIsEqual("Products");
+    }
+
+    @Entao("aparecerá um erro dizendo que o usuário está banido")
+    public void apareceráUmErroDizendoQueOUsuárioEstáBanido() {
+        LoginPage.action().assertIfErrorMessageIsEqual("Epic sadface: Sorry, this user has been locked out.");
     }
 }

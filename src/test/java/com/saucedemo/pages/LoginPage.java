@@ -4,6 +4,7 @@ import com.saucedemo.base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import static com.saucedemo.base.BaseTest.getDriver;
 
@@ -14,6 +15,8 @@ public class LoginPage extends BasePage {
     private WebElement passwordField;
     @FindBy(xpath = "//input[@id = 'login-button']")
     private WebElement loginButton;
+    @FindBy(xpath = "//div[@class = 'error-message-container error']")
+    private WebElement errorMessage;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -41,5 +44,17 @@ public class LoginPage extends BasePage {
     public LoginPage clickLoginButton(){
         loginButton.click();
         return this;
+    }
+
+    public LoginPage loginValido(){
+        writeUsernameField("standard_user");
+        writePasswordField("secret_sauce");
+        clickLoginButton();
+        return this;
+    }
+
+    public void assertIfErrorMessageIsEqual(String expected) {
+        System.out.println(expected);
+        Assert.assertEquals(errorMessage.getText(),expected);
     }
 }
