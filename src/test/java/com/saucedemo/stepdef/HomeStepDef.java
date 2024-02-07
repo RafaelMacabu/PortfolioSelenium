@@ -24,7 +24,13 @@ public class HomeStepDef {
     }
 
     @Entao("o item {string} estará presente no carrinho")
-    public void oItemEstaráPresenteNoCarrinho(String productName) {
+    public void oItemEstaráPresenteNoCarrinho(String productName) throws InterruptedException {
         CartPage.action().assertIfCartItemNameIsEqual(productName);
+        HomePage.action().resetAppState();
+    }
+
+    @Entao("terá {int} items no carrinho")
+    public void teráItemsNoCarrinho(int quantidade) {
+        HomePage.action().assertIfCartItemQtIsEqual(quantidade);
     }
 }

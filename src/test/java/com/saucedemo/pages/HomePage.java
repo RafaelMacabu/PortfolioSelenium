@@ -14,8 +14,13 @@ public class HomePage extends BasePage {
     private WebElement titleHomePage;
     @FindBy(xpath = "//a[@class = 'shopping_cart_link']")
     private WebElement goToCartButton;
+    @FindBy(xpath = "//button[@id = 'react-burger-menu-btn']")
+    private WebElement menuButton;
+    @FindBy(xpath = "//a[@id = 'reset_sidebar_link']")
+    private WebElement resetAppStateButton;
     private By addToCartButton = By.xpath("//button[@id = 'add-to-cart-']");
     private By removeFromCartButton = By.xpath("//button[@id = 'remove-']");
+    private By cartItemLabel = By.xpath("//div[@class = 'cart_item']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -62,5 +67,18 @@ public class HomePage extends BasePage {
 
     public String productNameToTag(String productName){
         return productName.toLowerCase().replaceAll("[\\s]","-");
+    }
+
+    public void resetAppState() throws InterruptedException {
+        menuButton.click();
+        Thread.sleep(1000);
+        resetAppStateButton.click();
+    }
+
+    public void assertIfCartItemQtIsEqual(int quantity) {
+        /*System.out.println(driver.findElements(By.xpath("//div[@class = 'cart_item']")).size());
+        Assert.assertEquals(driver.findElements(By.xpath("//div[@class = 'cart_item']")).size(),quantity);*/
+        System.out.println(driver.findElements(cartItemLabel).size());
+        Assert.assertEquals(driver.findElements(cartItemLabel).size(),quantity);
     }
 }
