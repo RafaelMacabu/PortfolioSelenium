@@ -4,6 +4,7 @@ import com.saucedemo.pages.CartPage;
 import com.saucedemo.pages.HomePage;
 import com.saucedemo.pages.LoginPage;
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 
@@ -16,6 +17,11 @@ public class HomeStepDef {
     @Quando("eu clicar no botão add to cart no item {string}")
     public void euClicarNoBotãoAddToCartNoItem(String productName) {
         HomePage.action().clickAddToCartButton(productName);
+    }
+
+    @E("eu clicar no botão remove no item {string}")
+    public void euClicarNoBotãoRemoveNoItem(String productName) {
+        HomePage.action().clickRemoveFromCartButton(productName);
     }
 
     @Quando("eu clicar no botão para acessar o carrinho")
